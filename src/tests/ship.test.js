@@ -1,5 +1,5 @@
 // const Ship = require('./ship');
-import Ship from './ship'
+import Ship from '../ship'
 
 test('ship is sunk', () => {
     const ship = Ship(1,1,2);

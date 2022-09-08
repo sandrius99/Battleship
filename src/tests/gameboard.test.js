@@ -1,5 +1,5 @@
 // const Gameboard = require('./gameboard');
-import Gameboard from './gameboard'
+import Gameboard from '../gameboard'
 
 
 test('all ships sunk', () => {
