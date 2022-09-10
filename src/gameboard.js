@@ -28,8 +28,10 @@ const Gameboard = () => {
         if(gameboard[y][x] !== ''){
             gameboard[y][x].hit(x,y);
             if(gameboard[y][x].isSunk()) ships--;
+            return true;
         } else {
             gameboard[y][x] = 'missed';
+            return false;
         } 
 
     }
@@ -38,7 +40,10 @@ const Gameboard = () => {
         return ships === 0;
     }
 
-    return {placeShip, receiveAttack, allShipsSunk};
+    function getGameboard() {
+        return gameboard;
+    }
+    return {placeShip, receiveAttack, allShipsSunk, getGameboard};
 
 }
 

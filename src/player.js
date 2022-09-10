@@ -15,26 +15,34 @@ const Player = (name) => {
         gameboard.placeShip(length, x, y);
     }
 
-    function attack(opponent, x, y){
-        if(shotAt.includes(`${x},${y}`)) return;
-        shotAt.push(`${x},${y}`);
-        opponent.receiveAttack(x, y);
+    function receiveAttack( y, x){
+        if(shotAt.includes(`${y},${x}`)) return;
+        shotAt.push(`${y},${x}`);
+        gameboard.receiveAttack(y, x);
     }
 
     function randomPlay(opponent){
         const move = posibleMoves.pop();
-        attack(opponent, move[1], move[0]);
+        opponent.receiveAttack()
     }
 
-    function playerWon(opponent){
-        return opponent.allShipsSunk();
+    function playerLost(){
+        return gameboard.allShipsSunk();
     }
 
     function getName() {
         return name;
     }
 
-    return {placeShip, attack, randomPlay, playerWon, getName};
+    function getShotAt() {
+        return shotAt;
+    }
+
+    function getGameboard() {
+        return gameboard.getGameboard();
+    }
+
+    return {placeShip, receiveAttack, randomPlay, playerLost, getName, getShotAt, getGameboard};
 }
 
 export default Player;
