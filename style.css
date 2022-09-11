@@ -7,6 +7,21 @@ body {
     
 }
 
+@media screen and (max-width: 910px) {
+    .content{
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        align-items: center;
+        
+    }
+
+    .board {
+        gap: 0px;
+        width: 400px;
+    }
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -35,6 +50,7 @@ body {
     grid-template-rows: repeat(10, 1fr);
     gap: 3px;
     padding: 5px;
+    
 }
 
 .square{
@@ -54,6 +70,7 @@ body {
     height: 30px;
     font-size: large;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
 #startBtn:hover, #startBtn:focus {
@@ -62,4 +79,22 @@ body {
 
 .ship {
     background: #16a34a;
+}
+
+.hit {
+    background: red;
+}
+
+.miss {
+    background: gray;
+}
+
+.winner {
+    font-size: 30px;
+    color: green;
+}
+
+.playerName {
+    font-size: 24px;
+    padding-bottom: 5px;
 }
