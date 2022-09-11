@@ -22,8 +22,9 @@ const Player = (name) => {
     }
 
     function randomPlay(opponent){
-        const move = posibleMoves.pop();
-        opponent.receiveAttack()
+        const move = possibleMoves.pop();
+        // opponent.receiveAttack()
+        return move;
     }
 
     function playerLost(){

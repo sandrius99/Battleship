@@ -1,4 +1,5 @@
 function populateBoards(parentDiv, player) {
+    
     const playerContentDiv = document.createElement('div');
     const playerNameDiv = document.createElement('div');
     const boardDiv = document.createElement('div');
@@ -16,7 +17,7 @@ function populateBoards(parentDiv, player) {
                 if(player.getShotAt().includes(`${j},${i}`)) return;
                 player.receiveAttack(j,i);
                 const squareState = player.getGameboard()[i][j];
-                console.log(squareState)
+                
                 assignDivColor(squareDiv, squareState);
                
                 
@@ -46,21 +47,40 @@ function placeShip(length, x, y, isPlayer, horizontal = true, ) {
     }
 }
 
-function computerAttack(x,y, opponent) {
+function computerAttack(x,y, squareState) {
    
     const squareDiv = document.querySelector(`.position${y}${x}`);
-    
-    console.log('test')
-    opponent.receiveAttack(y,x);
-    console.log(opponent.getGameboard())
-    assignDivColor(squareDiv, opponent.getGameboard()[y][x]);
+    assignDivColor(squareDiv, squareState);
 
 }
 
 function assignDivColor(squareDiv, squareState) {
     if(squareState === 'missed')
-    squareDiv.style.background = 'gray';
-    else squareDiv.style.background = 'red';
+    squareDiv.classList.add('miss');
+    else squareDiv.classList.add('hit');
 }
 
-export {populateBoards, placeShip, computerAttack};
+function clearBoard(parentDiv) {
+    if(document.querySelector('.winner'))
+    document.querySelector('.winner').remove();
+    
+    parentDiv.innerHTML = '';
+}
+
+function displayWinner(name) {
+    const parentDiv = document.querySelector('.container');
+    const insertBeforeDiv = document.querySelector('.content');
+    const winnerDiv = document.createElement('div');
+    winnerDiv.innerText = `${name} won!`;
+    winnerDiv.classList.add('winner');
+    if(name === 'Computer') winnerDiv.style.color = "red";
+    parentDiv.insertBefore(winnerDiv, insertBeforeDiv);
+    disableBoard();
+
+}
+
+function disableBoard() {
+    document.querySelectorAll('.board')[1].style.pointerEvents = "none";
+}
+
+export {populateBoards, placeShip, computerAttack, clearBoard, displayWinner};
